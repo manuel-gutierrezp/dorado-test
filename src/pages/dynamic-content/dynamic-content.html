@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Around Me</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-item *ngFor="let place of placesToShow">
+    <div class="flex">
+      <ion-avatar>
+        <img [src]="place.avatar" [alt]="place.name">
+      </ion-avatar>
+      <div class="flex description-item">
+        <h2>{{place.name}}</h2>
+        <p>{{place.description}}</p>
+      </div>
+    </div>
+  </ion-item>
+  <ion-item *ngIf="!networkStatus">
+    <div class="flex">
+      <ion-avatar>
+        <ion-icon style="color: #ee0b0b; font-size: 40px;" name="cloud-circle"></ion-icon>
+      </ion-avatar>
+      <div class="flex description-item">
+        <h2>No Internet Connection</h2>
+        <p>Please connect to airport Wi-Fi</p>
+      </div>
+    </div>
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div style="display: flex; flex-direction: column">
+      <span>GPS Coords: lat: {{lat}}, long: {{lng}}</span>
+    </div>
+    <div style="display: flex; align-items: center">
+      <span style="margin-right: 5px;">Internet status: {{status}}</span>
+      <div class="status {{networkStatus? 'online': 'offline'}}"></div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
