@@ -13,13 +13,17 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MapPage } from '../pages/map/map';
+import { DynamicPage } from '../pages/dynamic/dynamic';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    DynamicContentPage
+    DynamicContentPage,
+    MapPage,
+    DynamicPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    DynamicContentPage
+    DynamicContentPage,
+    MapPage,
+    DynamicPage
   ],
   providers: [
     StatusBar,

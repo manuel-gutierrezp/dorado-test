@@ -6,6 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DynamicContentPage } from '../pages/dynamic-content/dynamic-content';
+import { MapPage } from '../pages/map/map';
+import { DynamicPage } from '../pages/dynamic/dynamic';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +26,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
-      { title: 'around', component: DynamicContentPage },
+      { title: 'Dynamic', component: DynamicContentPage },
+      { title: 'Map', component: MapPage }
     ];
 
   }
