@@ -9,6 +9,7 @@ import { fence } from './declarations/geofences.model';
 import { place } from './declarations/places.model';
 
 import 'rxjs/add/operator/filter';
+import { Platform } from 'ionic-angular/platform/platform';
 
 @IonicPage()
 @Component({
@@ -23,9 +24,27 @@ export class DynamicContentPage {
     private geofence: Geofence,
     private ngZone: NgZone,
     private network: Network,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private platform: Platform
   ) {
-    this.initilizeGeofence();
+
+  }
+
+  ionViewDidLoad() {
+
+    this.platform.ready().then(() => {
+      this.initilizeGeofence();
+
+      this.verifyNetworkStatus();
+      this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
+        this.lat = resp.coords.latitude
+        this.lng = resp.coords.longitude
+      }, (err) => {
+        this.lat = 'xxx.x';
+        this.lng = 'xxx.x';
+      });
+    })
+
   }
 
   networkStatus: boolean;
@@ -118,14 +137,7 @@ export class DynamicContentPage {
 
 
   ngOnInit() {
-    this.verifyNetworkStatus();
-    this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
-      this.lat = resp.coords.latitude
-      this.lng = resp.coords.longitude
-    }, (err) => {
-      this.lat = 'xxx.x';
-      this.lng = 'xxx.x';
-    });
+
   }
 
   initilizeGeofence() {
