@@ -78,7 +78,19 @@ export class DynamicContentPage {
       name: 'Yuxi Global',
       avatar: 'http://yuxiglobal.com/images/dockerB.png',
       description: 'We love what we do'
-    }
+    },
+    {
+      id: 'Geofence 1',
+      name: 'Geofence 1',
+      avatar: 'http://www.yuxiglobal.com/pages/img/yuxiSign.png',
+      description: 'We love what we do'
+    },
+    {
+      id: 'Geofence 2',
+      name: 'Geofence 2',
+      avatar: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAfwAAAAJGMzMjBhYzIzLTI3NDAtNGNiZi04Yjk0LTVmNDc2ZjY2ODljYw.png',
+      description: 'We love what we do'
+    },
   ]
   fences: fence[] = [
     {
@@ -132,7 +144,33 @@ export class DynamicContentPage {
         text: 'You are close to Yuxi Global',
         openAppOnClick: true
       }
-    }
+    },
+    {
+      id: 'Geofence 2',
+      latitude: 4.705588263758575,
+      longitude: -74.03993636369705,
+      radius: 150,
+      transitionType: 3,
+      notification: {
+        id: 1,
+        title: 'You crossed a Geofence 2',
+        text: 'You are close to Geofence 2',
+        openAppOnClick: true
+      }
+    },
+    {
+      id: 'Geofence 1',
+      latitude: ​4.705695190483763,
+      longitude: -74.04174953699112,
+      radius: 100,
+      transitionType: 3,
+      notification: {
+        id: 1,
+        title: 'You crossed a Geofence 1',
+        text: 'You are close to Geofence 1',
+        openAppOnClick: true
+      }
+    },
   ]
 
 
@@ -164,13 +202,13 @@ export class DynamicContentPage {
     );
   }
 
-  managePlaces(transition: {}[]) {
+  managePlaces(transition: fence[]) {
     transition.map((place) => {
-      if (place['transitionType'] !== 1) {
-        const index = this.placesToShow.findIndex(x => x['id'] == place['id'])
+      if (place.transitionType !== 1) {
+        const index = this.placesToShow.findIndex(x => x.id == place.id)
         this.placesToShow.splice(index, 1);
       } else {
-        const index = this.places.findIndex(find => find['id'] == place['id'])
+        const index = this.places.findIndex(find => find.id == place.id)
         this.placesToShow.push(this.places[index])
       }
     })
