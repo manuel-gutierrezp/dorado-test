@@ -3,4 +3,5 @@ export interface place {
   name: string;
   avatar: string;
   description: string;
+  category?: string;
 }

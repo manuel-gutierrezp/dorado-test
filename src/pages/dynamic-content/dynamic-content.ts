@@ -76,8 +76,9 @@ export class DynamicContentPage {
     {
       id: 'YuxiGlobal',
       name: 'Yuxi Global',
-      avatar: 'http://yuxiglobal.com/images/dockerB.png',
-      description: 'We love what we do'
+      avatar: 'https://www.interacpedia.com/images/cache/width750/companies/14/metro.png',
+      description: 'We love what we do',
+      category: 'Bussiness'
     },
     {
       id: 'Geofence 1',
