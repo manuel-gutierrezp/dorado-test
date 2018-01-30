@@ -33,15 +33,7 @@ export class DynamicContentPage {
 
     this.platform.ready().then(() => {
       this.initilizeGeofence();
-
       this.verifyNetworkStatus();
-      this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
-        this.lat = resp.coords.latitude
-        this.lng = resp.coords.longitude
-      }, (err) => {
-        this.lat = 'xxx.x';
-        this.lng = 'xxx.x';
-      });
     })
 
   }
@@ -160,7 +152,7 @@ export class DynamicContentPage {
     },
     {
       id: 'Geofence 1',
-      latitude: ​4.705695190483763,
+      latitude: 4.705695190483763,
       longitude: -74.04174953699112,
       radius: 100,
       transitionType: 3,
@@ -180,7 +172,17 @@ export class DynamicContentPage {
 
   initilizeGeofence() {
     this.geofence.initialize().then(
-      () => { console.log('Geofence Plugin Ready') },
+      () => {
+        console.log('Geofence Plugin Ready');
+        this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
+          this.lat = resp.coords.latitude
+          this.lng = resp.coords.longitude
+          console.dir(resp);
+        }, (err) => {
+          this.lat = 'xxx.x';
+          this.lng = 'xxx.x';
+        });
+      },
       (err) => console.log(err)
     )
 
@@ -235,6 +237,10 @@ export class DynamicContentPage {
         this.status = 'Online';
       });
     });
+  }
+
+  launchAlert() {
+    alert('icon touched');
   }
 
 }

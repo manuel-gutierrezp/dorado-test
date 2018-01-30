@@ -1,3 +1,5 @@
+@import '../../theme/variables.scss';
+
 page-dynamic-content {}
 
 .flex {
@@ -22,18 +24,10 @@ page-dynamic-content {}
     flex-grow: 1;
 }
 
-.status {
-    height: 8px;
-    width: 8px;
-    border-radius: 50%;
-}
-
-.online {
-    background-color: #21e421;
-}
-
-.offline {
-    background-color: #ee0b0b;
+.info-footer {
+    display: flex; 
+    flex-direction: column;
+    color: white;
 }
 
 .item-md ion-avatar ion-img,
@@ -53,5 +47,65 @@ page-dynamic-content {}
 }
 
 ion-navbar.toolbar {
-	background-color: #333333;
+    background-color: #333333;
+}
+
+.header-img {
+    width: 120pt;
+    height: 50%;
+}
+
+.toolbar-title {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.toolbar-background-md {
+    background-color: #333333;
+}
+
+.toolbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .header-menu-icon {
+        color: $ad-yellow;
+        font-size: 22pt;
+    }
+}
+
+.ion-ios-onConnection,
+.ion-ios-onConnection-outline,
+.ion-md-onConnection {
+    content: url(../assets/icon/onwifiAsset.svg);
+    width: 24pt;
+    height: 24pt;
+}
+
+.ion-ios-offConnection,
+.ion-ios-offConnection-outline,
+.ion-md-offConnection {
+    content: url(../assets/icon/nowifiAsset.svg);
+    width: 24pt;
+    height: 24pt;
+}
+
+.ion-ios-doradologo,
+.ion-ios-doradologo-outline,
+.ion-md-doradologo {
+    content: url(../assets/icon/eldoradologo.svg);
+    width: 130pt;
+}
+
+.ad-footer {
+    height: 50pt;
+    display: flex;
+    width: 100%;
+    bottom: 70pt;
+    background-color: #333333;
 }
