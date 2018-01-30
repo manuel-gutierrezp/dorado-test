@@ -11,7 +11,5 @@ export class TabsPage {
   list = ListPage;
   home = HomePage;
 
-  constructor() {
-
-  }
+  constructor() {}
 }
