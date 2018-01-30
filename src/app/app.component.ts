@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { ListPage} from '../pages/list/list';
 import { DynamicContentPage } from '../pages/dynamic-content/dynamic-content';
 
 @Component({
@@ -11,6 +12,7 @@ import { DynamicContentPage } from '../pages/dynamic-content/dynamic-content';
 })
 export class MyApp {
   rootPage: any = TabsPage;
+  // rootPage: any = ListPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
