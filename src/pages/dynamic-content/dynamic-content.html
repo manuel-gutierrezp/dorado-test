@@ -1,20 +1,19 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Around Me</ion-title>
+  <ion-navbar dark>
+    <ion-title>
+      <img width="50%" height="50%" src="../assets/imgs/eldorado.png" alt="El Dorado">
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-item *ngFor="let place of placesToShow">
+  <ion-item *ngFor="let place of places">
     <div class="flex">
       <ion-avatar>
         <img [src]="place.avatar" [alt]="place.name">
       </ion-avatar>
-      <div class="flex description-item">
+      <div class="description-item">
         <h2 class="title">{{place.name}}</h2>
         <p>{{place.description}}</p>
         <h3 class="title">{{place.category}}</h3>        

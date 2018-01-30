@@ -11,7 +11,6 @@ import { place } from './declarations/places.model';
 import 'rxjs/add/operator/filter';
 import { Platform } from 'ionic-angular/platform/platform';
 
-@IonicPage()
 @Component({
   selector: 'page-dynamic-content',
   templateUrl: 'dynamic-content.html',
