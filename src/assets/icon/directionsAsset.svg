@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 23">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;}
+        </style>
+    </defs>
+    <title>
+        directionsAsset 19
+    </title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <path d="M10.68,11.59c0,2.81-5.09,8.91-5.09,8.91S.5,14.4.5,11.59a5.09,5.09,0,0,1,10.18,0Z" class="cls-1"/>
+            <path d="M7.5,11.59A1.91,1.91,0,1,1,5.59,9.68,1.92,1.92,0,0,1,7.5,11.59Z" class="cls-1"/>
+            <polyline points="5.59 22.5 14.5 22.5 14.5 13.5 19.5 13.5" class="cls-1"/>
+            <path d="M23.5,4.5c0,2.21-4,7-4,7s-4-4.79-4-7a4,4,0,0,1,8,0Z" class="cls-1"/>
+            <circle cx="19.5" cy="4.5" r="1.5" class="cls-1"/>
+        </g>
+    </g>
+</svg>

@@ -11,6 +11,7 @@ import { Network } from '@ionic-native/network';
 import { Geofence } from '@ionic-native/geofence';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
+    TabsPage,
     DynamicContentPage
   ],
   imports: [
@@ -30,7 +32,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     ListPage,
-    DynamicContentPage
+    DynamicContentPage,
+    TabsPage
   ],
   providers: [
     StatusBar,
