@@ -15,28 +15,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    ListPage,
-    TabsPage,
-    DynamicContentPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
+  declarations: [MyApp, HomePage, ListPage, TabsPage, DynamicContentPage],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage,
-    DynamicContentPage,
-    TabsPage
-  ],
+  entryComponents: [MyApp, HomePage, ListPage, DynamicContentPage, TabsPage],
   providers: [
     StatusBar,
     SplashScreen,
@@ -47,4 +32,4 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
     InAppBrowser
   ]
 })
-export class AppModule { }
+export class AppModule {}
