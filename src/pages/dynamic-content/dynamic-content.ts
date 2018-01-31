@@ -1,19 +1,19 @@
 import { Component, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { Geofence } from '@ionic-native/geofence';
 import { Network } from '@ionic-native/network';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { fence } from './declarations/geofences.model';
-import { place } from './declarations/places.model';
+import { Fence } from './declarations/geofences.model';
+import { Place } from './declarations/places.model';
 
 import 'rxjs/add/operator/filter';
 import { Platform } from 'ionic-angular/platform/platform';
 
 @Component({
   selector: 'page-dynamic-content',
-  templateUrl: 'dynamic-content.html',
+  templateUrl: 'dynamic-content.html'
 })
 export class DynamicContentPage {
 
@@ -44,8 +44,9 @@ export class DynamicContentPage {
   name: any;
   lat: number | string;
   lng: number | string;
-  placesToShow: place[] = [];
-  places: place[] = [
+  placesToShow: Place[] = [];
+  // tslint:disable-next-line:member-ordering
+  places: Place[] = [
     {
       id: 'estacion del metro',
       name: 'Est. Industriales',
@@ -62,7 +63,9 @@ export class DynamicContentPage {
       id: 'Museo Arte Moderno Medellin',
       name: 'MAMM',
       avatar: 'https://www.pagomio.com/uploads/cache/logo_big/uploads/media/logo/0001/01/57e1a215c5867.jpg',
-      description: 'MAMM esta dedicado a la investigación, conservación y divulgación en los campos del arte moderno y contemporáneo, así como al desarrollo cultural de la ciudad.'
+      description:
+        // tslint:disable-next-line:max-line-length
+        'MAMM esta dedicado a la investigación, conservación y divulgación en los campos del arte moderno y contemporáneo, así como al desarrollo cultural de la ciudad.'
     },
     {
       id: 'YuxiGlobal',
@@ -80,28 +83,29 @@ export class DynamicContentPage {
     {
       id: 'Geofence 2',
       name: 'Geofence 2',
-      avatar: 'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAfwAAAAJGMzMjBhYzIzLTI3NDAtNGNiZi04Yjk0LTVmNDc2ZjY2ODljYw.png',
+      avatar:
+        'https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAfwAAAAJGMzMjBhYzIzLTI3NDAtNGNiZi04Yjk0LTVmNDc2ZjY2ODljYw.png',
       description: 'We love what we do'
-    },
-  ]
-  fences: fence[] = [
+    }
+  ];
+  fences: Fence[] = [
     {
-      id: "estacion del metro",
+      id: 'estacion del metro',
       latitude: 6.230907,
       longitude: -75.575732,
       radius: 300,
       transitionType: 3,
       notification: {
         id: 1,
-        title: "You crossed a fence",
-        text: "You are close to Estacion Industriales",
+        title: 'You crossed a fence',
+        text: 'You are close to Estacion Industriales',
         openAppOnClick: true
       }
     },
     {
       id: 'Hospital M',
       latitude: 6.234385,
-      longitude: -75.572710,
+      longitude: -75.57271,
       radius: 300,
       transitionType: 3,
       notification: {
@@ -162,13 +166,10 @@ export class DynamicContentPage {
         text: 'You are close to Geofence 1',
         openAppOnClick: true
       }
-    },
-  ]
+    }
+  ];
 
 
-  ngOnInit() {
-
-  }
 
   initilizeGeofence() {
     this.geofence.initialize().then(
@@ -187,7 +188,7 @@ export class DynamicContentPage {
     )
 
     this.addGeofence(this.fences);
-    this.geofence.onTransitionReceived().subscribe((transition) => {
+    this.geofence.onTransitionReceived().subscribe(transition => {
       this.ngZone.run(() => {
         if (transition) {
           this.managePlaces(transition);
@@ -198,26 +199,25 @@ export class DynamicContentPage {
   }
 
   private addGeofence(fences) {
-    this.geofence.addOrUpdate(fences).then(
-      () => console.log('Geofence added'),
-      (err) => console.log('Geofence failed to add')
-    );
+    this.geofence
+      .addOrUpdate(fences)
+      .then(() => console.log('Geofence added'), err => console.log('Geofence failed to add'));
   }
 
-  managePlaces(transition: fence[]) {
-    transition.map((place) => {
+  managePlaces(transition: Fence[]) {
+    transition.map(place => {
       if (place.transitionType !== 1) {
-        const index = this.placesToShow.findIndex(x => x.id == place.id)
+        const index = this.placesToShow.findIndex(x => x.id === place.id);
         this.placesToShow.splice(index, 1);
       } else {
-        const index = this.places.findIndex(find => find.id == place.id)
-        this.placesToShow.push(this.places[index])
+        const index = this.places.findIndex(find => find.id === place.id);
+        this.placesToShow.push(this.places[index]);
       }
-    })
+    });
   }
 
   verifyNetworkStatus() {
-    if (this.network.type == 'none') {
+    if (this.network.type === 'none') {
       this.status = 'Offline';
       this.networkStatus = false;
     } else {

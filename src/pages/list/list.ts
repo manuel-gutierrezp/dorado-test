@@ -1,37 +1,93 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, NgZone } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { InAppBrowser, InAppBrowserObject } from '@ionic-native/in-app-browser';
+import { Geolocation } from '@ionic-native/geolocation';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/do';
+import { Subscription } from 'rxjs/Subscription';
+import { Coords } from './declarations/coords.interface';
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  browser: InAppBrowserObject;
+  locationSubscription: Subscription;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    private geolocation: Geolocation,
+    private iab: InAppBrowser,
+    private ngZone: NgZone
+  ) {}
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  ionViewDidEnter(): void {
+    this.launchMap();
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
+  launchMap(): void {
+    this.browser = this.iab.create(
+      'http://locusmap-test.singlehtml.com/',
+      '_self',
+      'EnableViewPortScale=yes,closebuttoncaption=Done'
+    );
+    this.browser.on('loadstop').subscribe(_ => this.initTrackingCurrentLocation(), error => console.error(error));
+
+    this.browser.on('exit').subscribe(_ => this.goToAroundMeTab(), error => console.error(error));
+  }
+
+  goToAroundMeTab(): void {
+    if (this.locationSubscription) {
+      this.locationSubscription.unsubscribe();
+    }
+    const aroundMeIndex = 0;
+    this.ngZone.run(() => {
+      this.navCtrl.parent.select(aroundMeIndex);
     });
+  }
+
+  initTrackingCurrentLocation(): void {
+    const context = this;
+
+    // Bogotá
+    let offsetCoordsLat = 4.705529454052709;
+    let offsetCoordsLng = -74.03905659914017;
+
+    // Medellín
+    // let offsetCoordsLat = 6.224849;
+    // let offsetCoordsLng = -75.574731;
+
+    offsetCoordsLat = 51.468999 - offsetCoordsLat;
+    offsetCoordsLng = -0.450903 - offsetCoordsLng;
+
+    setTimeout(() => {
+      context.locationSubscription = context.geolocation
+        .watchPosition({
+          timeout: 30000,
+          enableHighAccuracy: true
+        })
+        .throttleTime(500)
+        .map(coordsToCenterMap => {
+          const coords: Coords = {
+            latitude: coordsToCenterMap.coords.latitude + offsetCoordsLat,
+            longitude: coordsToCenterMap.coords.longitude + offsetCoordsLng
+          };
+          console.log(coords);
+          return coords;
+        })
+        .subscribe(coords => {
+          const codeToExecute = `LocusMaps({command:"setPosition", lat:"${coords.latitude}", lng:"${
+            coords.longitude
+          }", timeout:0})`;
+
+          context.browser.executeScript({
+            code: codeToExecute
+          });
+        });
+    }, 10000);
   }
 }

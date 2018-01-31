@@ -89,4 +89,8 @@
     <allow-navigation href="http://10.3.8.161:8100" />
     <allow-navigation href="http://10.3.8.247:8100" />
     <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-geofence" spec="^0.7.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~2.0.2" />
+    <engine name="android" spec="~6.3.0" />
+    <allow-navigation href="http://10.3.8.187:8100" />
 </widget>
