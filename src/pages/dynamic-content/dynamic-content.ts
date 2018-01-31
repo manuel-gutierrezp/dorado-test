@@ -176,15 +176,17 @@ export class DynamicContentPage {
       () => {
         console.log('Geofence Plugin Ready');
         this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
-          this.lat = resp.coords.latitude
-          this.lng = resp.coords.longitude
+          this.lat = resp.coords.latitude;
+          this.lng = resp.coords.longitude;
           console.dir(resp);
         }, (err) => {
           this.lat = 'xxx.x';
           this.lng = 'xxx.x';
         });
       },
-      (err) => console.log(err)
+      (err) => {
+        console.log(err);
+      }
     )
 
     this.addGeofence(this.fences);
