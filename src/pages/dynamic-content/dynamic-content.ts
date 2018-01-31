@@ -16,6 +16,7 @@ import { Platform } from 'ionic-angular/platform/platform';
   templateUrl: 'dynamic-content.html'
 })
 export class DynamicContentPage {
+
   networkStatus: boolean;
   status: string;
   type: string;
@@ -147,6 +148,7 @@ export class DynamicContentPage {
     }
   ];
 
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -155,35 +157,35 @@ export class DynamicContentPage {
     private network: Network,
     private geolocation: Geolocation,
     private platform: Platform
-  ) {}
+  ) {
+
+  }
 
   ionViewDidLoad() {
+
     this.platform.ready().then(() => {
       this.initilizeGeofence();
-
       this.verifyNetworkStatus();
-      this.geolocation
-        .watchPosition()
-        .filter(p => p.coords !== undefined)
-        .subscribe(
-          resp => {
-            this.lat = resp.coords.latitude;
-            this.lng = resp.coords.longitude;
-          },
-          err => {
-            this.lat = 'xxx.x';
-            this.lng = 'xxx.x';
-          }
-        );
     });
+
   }
 
   initilizeGeofence() {
     this.geofence.initialize().then(
       () => {
         console.log('Geofence Plugin Ready');
+        this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
+          this.lat = resp.coords.latitude;
+          this.lng = resp.coords.longitude;
+          console.dir(resp);
+        }, (err) => {
+          this.lat = 'xxx.x';
+          this.lng = 'xxx.x';
+        });
       },
-      err => console.log(err)
+      (err) => {
+        console.log(err);
+      }
     );
 
     this.addGeofence(this.fences);
@@ -237,4 +239,9 @@ export class DynamicContentPage {
       });
     });
   }
+
+  launchAlert() {
+    alert('icon touched');
+  }
+
 }

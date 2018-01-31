@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-navbar dark>
+  <ion-navbar>
     <ion-title>
-      <img width="50%" height="50%" src="../assets/imgs/eldorado.png" alt="El Dorado">
+      <ion-icon (click)="launchAlert()" class="header-menu-icon" name="menu"></ion-icon>
+      <ion-icon name="doradologo"></ion-icon>
+      <ion-icon name="{{networkStatus? 'onConnection': 'offConnection'}}"></ion-icon>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-item *ngFor="let place of places">
+  <ion-item *ngFor="let place of placesToShow">
     <div class="flex">
       <ion-avatar>
         <img [src]="place.avatar" [alt]="place.name">
@@ -16,7 +18,7 @@
       <div class="description-item">
         <h2 class="title">{{place.name}}</h2>
         <p>{{place.description}}</p>
-        <h3 class="title">{{place.category}}</h3>        
+        <h3 class="title">{{place.category}}</h3>
       </div>
       <div class="arrow-container">
         <ion-icon name="arrow-right"></ion-icon>
@@ -36,14 +38,20 @@
   </ion-item>
 </ion-content>
 
+<div class="ad-footer">
+  <div>
+    1
+  </div>
+  <div>
+    2
+  </div>
+</div>
+
 <ion-footer>
   <ion-toolbar>
-    <div style="display: flex; flex-direction: column">
-      <span>GPS Coords: lat: {{lat}}, long: {{lng}}</span>
-    </div>
-    <div style="display: flex; align-items: center">
-      <span style="margin-right: 5px;">Internet status: {{status}}</span>
-      <div class="status {{networkStatus? 'online': 'offline'}}"></div>
+    <div class="info-footer" >
+      <span>lat: {{lat}}</span>
+      <span>long: {{lng}}</span>
     </div>
   </ion-toolbar>
 </ion-footer>

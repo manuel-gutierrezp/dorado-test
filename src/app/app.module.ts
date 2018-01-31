@@ -7,12 +7,12 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DynamicContentPage } from '../pages/dynamic-content/dynamic-content';
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { Network } from '@ionic-native/network';
 import { Geofence } from '@ionic-native/geofence';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
