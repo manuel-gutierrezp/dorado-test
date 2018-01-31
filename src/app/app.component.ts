@@ -1,11 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { ListPage} from '../pages/list/list';
-import { DynamicContentPage } from '../pages/dynamic-content/dynamic-content';
 
 @Component({
   templateUrl: 'app.html'

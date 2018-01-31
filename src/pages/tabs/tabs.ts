@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DynamicContentPage } from "../dynamic-content/dynamic-content";
+import { DynamicContentPage } from '../dynamic-content/dynamic-content';
 import { ListPage } from '../list/list';
 import { HomePage } from '../home/home';
 

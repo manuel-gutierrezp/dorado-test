@@ -1,4 +1,4 @@
-export interface fence {
+export interface Fence {
   id: string;
   latitude: number;
   longitude: number;

@@ -1,22 +1,18 @@
-import { Component, NgZone } from "@angular/core";
-import { NavController } from "ionic-angular";
-import { InAppBrowser, InAppBrowserObject } from "@ionic-native/in-app-browser";
-import { Geolocation, GeolocationOptions } from "@ionic-native/geolocation";
-
-import "rxjs/add/operator/throttleTime";
-import "rxjs/add/operator/delay";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/do";
-
-import { Subscription } from "rxjs/Subscription";
-
-import { Coords } from "./declarations/coords.interface";
-import { Observable } from "rxjs/Observable";
+import { Component, NgZone } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { InAppBrowser, InAppBrowserObject } from '@ionic-native/in-app-browser';
+import { Geolocation } from '@ionic-native/geolocation';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/do';
+import { Subscription } from 'rxjs/Subscription';
+import { Coords } from './declarations/coords.interface';
 
 @Component({
-  selector: "page-list",
-  templateUrl: "list.html"
+  selector: 'page-list',
+  templateUrl: 'list.html'
 })
 export class ListPage {
   browser: InAppBrowserObject;
@@ -35,24 +31,19 @@ export class ListPage {
 
   launchMap(): void {
     this.browser = this.iab.create(
-      "http://locusmap-test.singlehtml.com/",
-      "_self",
-      "EnableViewPortScale=yes,closebuttoncaption=Done"
+      'http://locusmap-test.singlehtml.com/',
+      '_self',
+      'EnableViewPortScale=yes,closebuttoncaption=Done'
     );
-    this.browser
-      .on("loadstop")
-      .subscribe(
-        _ => this.initTrackingCurrentLocation(),
-        error => console.error(error)
-      );
+    this.browser.on('loadstop').subscribe(_ => this.initTrackingCurrentLocation(), error => console.error(error));
 
-    this.browser
-      .on("exit")
-      .subscribe(_ => this.goToAroundMeTab(), error => console.error(error));
+    this.browser.on('exit').subscribe(_ => this.goToAroundMeTab(), error => console.error(error));
   }
 
   goToAroundMeTab(): void {
-    if (this.locationSubscription) this.locationSubscription.unsubscribe();
+    if (this.locationSubscription) {
+      this.locationSubscription.unsubscribe();
+    }
     const aroundMeIndex = 0;
     this.ngZone.run(() => {
       this.navCtrl.parent.select(aroundMeIndex);
@@ -89,9 +80,9 @@ export class ListPage {
           return coords;
         })
         .subscribe(coords => {
-          const codeToExecute = `LocusMaps({command:"setPosition", lat:"${
-            coords.latitude
-          }", lng:"${coords.longitude}", timeout:0})`;
+          const codeToExecute = `LocusMaps({command:"setPosition", lat:"${coords.latitude}", lng:"${
+            coords.longitude
+          }", timeout:0})`;
 
           context.browser.executeScript({
             code: codeToExecute
