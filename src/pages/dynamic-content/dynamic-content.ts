@@ -17,27 +17,6 @@ import { Platform } from 'ionic-angular/platform/platform';
 })
 export class DynamicContentPage {
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private geofence: Geofence,
-    private ngZone: NgZone,
-    private network: Network,
-    private geolocation: Geolocation,
-    private platform: Platform
-  ) {
-
-  }
-
-  ionViewDidLoad() {
-
-    this.platform.ready().then(() => {
-      this.initilizeGeofence();
-      this.verifyNetworkStatus();
-    })
-
-  }
-
   networkStatus: boolean;
   status: string;
   type: string;
@@ -170,6 +149,26 @@ export class DynamicContentPage {
   ];
 
 
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private geofence: Geofence,
+    private ngZone: NgZone,
+    private network: Network,
+    private geolocation: Geolocation,
+    private platform: Platform
+  ) {
+
+  }
+
+  ionViewDidLoad() {
+
+    this.platform.ready().then(() => {
+      this.initilizeGeofence();
+      this.verifyNetworkStatus();
+    });
+
+  }
 
   initilizeGeofence() {
     this.geofence.initialize().then(
@@ -187,7 +186,7 @@ export class DynamicContentPage {
       (err) => {
         console.log(err);
       }
-    )
+    );
 
     this.addGeofence(this.fences);
     this.geofence.onTransitionReceived().subscribe(transition => {
