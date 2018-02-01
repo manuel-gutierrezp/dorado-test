@@ -81,8 +81,8 @@ ion-navbar.toolbar,
     }
 }
 
-.toolbar-ios {
-    padding: 0;
+.toolbar-ios ion-title {
+    padding: 20px 12px 0 !important;
 }
 
 .ion-ios-onConnection,

@@ -22,7 +22,7 @@ export class DynamicContentPage {
   lng1: any;
   lat2: any;
   lng2: any;
-  networkStatus: boolean = true;
+  networkStatus = true;
   status: string;
   type: string;
   name: any;
@@ -257,18 +257,18 @@ export class DynamicContentPage {
 
   getDistanceFromLatLonInKm(): number {
     const R = 6371; // Equivolume Radious
-    let distanceLatitude = this.deg2rad(this.lat2 - this.lat1);
-    let distanceLongitude = this.deg2rad(this.lng2 - this.lng1);
-    let a =
+    const distanceLatitude = this.deg2rad(this.lat2 - this.lat1);
+    const distanceLongitude = this.deg2rad(this.lng2 - this.lng1);
+    const a =
       Math.pow(Math.sin(distanceLatitude / 2), 2) +
       Math.cos(this.deg2rad(this.lat1)) * Math.cos(this.deg2rad(this.lat2)) *
       Math.pow(Math.sin(distanceLongitude / 2), 2);
-    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c; // Distance in km
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
   }
 
   deg2rad(deg) {
-    return deg * (Math.PI / 180)
+    return deg * (Math.PI / 180);
   }
 
 }
