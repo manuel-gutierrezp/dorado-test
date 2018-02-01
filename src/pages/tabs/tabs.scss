@@ -35,17 +35,38 @@
     height: 70pt;
 }
 
+.tabs-ios .tabbar {
+    background-color: rgba(255, 206, 44, 0.9275);
+    height: 70pt;
+}
+
 .tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text {
     font-size: 9pt;
     font-variant: small-caps;
 }
+
+.tabs-ios[tabsLayout=icon-top] .has-icon .tab-button-text {
+    font-size: 9pt;
+    font-variant: small-caps;
+}
+
 
 .tabs-md .tab-button[aria-selected=true] {
     color: rgba(255, 206, 44, 1);
     background-color: rgba(51, 51, 51, 0.9275);
 }
 
+.tabs-ios .tab-button[aria-selected=true] {
+    color: rgba(255, 206, 44, 1);
+    background-color: rgba(51, 51, 51, 0.9275);
+}
+
 .tabs-md .tab-button {
+    height: 100%;
+    color: rgba(0, 0, 0, 1);
+}
+
+.tabs-ios .tab-button {
     height: 100%;
     color: rgba(0, 0, 0, 1);
 }
@@ -82,5 +103,9 @@
 }
 
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon {
+    color: rgba(255, 206, 44, 1);
+}
+
+.tabs-ios .tab-button[aria-selected=true] .tab-button-icon {
     color: rgba(255, 206, 44, 1);
 }
