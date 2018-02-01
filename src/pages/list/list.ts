@@ -23,7 +23,7 @@ export class ListPage {
     private geolocation: Geolocation,
     private iab: InAppBrowser,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
   ionViewDidEnter(): void {
     this.launchMap();
@@ -32,12 +32,16 @@ export class ListPage {
   launchMap(): void {
     this.browser = this.iab.create(
       'http://locusmap-test.singlehtml.com/',
-      '_self',
-      'EnableViewPortScale=yes,closebuttoncaption=Done'
+      '_blank',
+      'EnableViewPortScale=yes,closebuttoncaption=Done, toolbar=no, presentationstyle=pagesheet'
     );
-    this.browser.on('loadstop').subscribe(_ => this.initTrackingCurrentLocation(), error => console.error(error));
+    this.browser.on('loadstop').subscribe(_ => {
+      this.initTrackingCurrentLocation();
+    }, error => console.error(error));
 
-    this.browser.on('exit').subscribe(_ => this.goToAroundMeTab(), error => console.error(error));
+    this.browser.on('exit').subscribe(_ => {
+      this.goToAroundMeTab();
+    }, error => console.error(error));
   }
 
   goToAroundMeTab(): void {
@@ -54,12 +58,12 @@ export class ListPage {
     const context = this;
 
     // Bogotá
-    let offsetCoordsLat = 4.705529454052709;
-    let offsetCoordsLng = -74.03905659914017;
+    // let offsetCoordsLat = 4.705529454052709;
+    // let offsetCoordsLng = -74.03905659914017;
 
     // Medellín
-    // let offsetCoordsLat = 6.224849;
-    // let offsetCoordsLng = -75.574731;
+    let offsetCoordsLat = 6.224849;
+    let offsetCoordsLng = -75.574731;
 
     offsetCoordsLat = 51.468999 - offsetCoordsLat;
     offsetCoordsLng = -0.450903 - offsetCoordsLng;
@@ -82,7 +86,7 @@ export class ListPage {
         .subscribe(coords => {
           const codeToExecute = `LocusMaps({command:"setPosition", lat:"${coords.latitude}", lng:"${
             coords.longitude
-          }", timeout:0})`;
+            }", timeout:0})`;
 
           context.browser.executeScript({
             code: codeToExecute
