@@ -23,6 +23,7 @@ export class DynamicContentPage {
   name: any;
   lat: number | string;
   lng: number | string;
+  alt: number | string;
   placesToShow: Place[] = [];
   // tslint:disable-next-line:member-ordering
   places: Place[] = [
@@ -177,10 +178,12 @@ export class DynamicContentPage {
         this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
           this.lat = resp.coords.latitude;
           this.lng = resp.coords.longitude;
+          this.alt = resp.coords.altitude;
           console.dir(resp);
         }, (err) => {
           this.lat = 'xxx.x';
           this.lng = 'xxx.x';
+          this.alt = 'xxx.x';
         });
       },
       (err) => {

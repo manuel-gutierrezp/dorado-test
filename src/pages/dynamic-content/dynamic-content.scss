@@ -25,9 +25,9 @@ page-dynamic-content {}
 }
 
 .info-footer {
-    display: flex; 
-    flex-direction: column;
+    display: block;
     color: white;
+    font-size: 8pt;
 }
 
 .item-md ion-avatar ion-img,
