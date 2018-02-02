@@ -35,7 +35,7 @@
     "cordova-plugin-add-swift-support": "^1.6.0",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^1.1.4",
-    "cordova-plugin-geofence": "git+https://github.com/ebp-cortex/cordova-plugin-geofence.git",
+    "cordova-plugin-geofence": "https://github.com/ebp-cortex/cordova-plugin-geofence.git",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-inappbrowser": "~2.0.2",
     "cordova-plugin-ionic-webview": "^1.1.16",
