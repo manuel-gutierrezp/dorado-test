@@ -1,5 +1,4 @@
 @import '../../theme/variables.scss';
-
 page-dynamic-content {}
 
 .flex {
@@ -46,7 +45,8 @@ page-dynamic-content {}
     height: 24pt;
 }
 
-ion-navbar.toolbar {
+ion-navbar.toolbar,
+.toolbar-background-ios {
     background-color: #333333;
 }
 
@@ -65,11 +65,13 @@ ion-navbar.toolbar {
     align-items: center;
 }
 
-.toolbar-background-md {
+.toolbar-background-md,
+.toolbar-background-ios {
     background-color: #333333;
 }
 
-.toolbar-content {
+.toolbar-content,
+.toolbar-ios {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +79,10 @@ ion-navbar.toolbar {
         color: $ad-yellow;
         font-size: 22pt;
     }
+}
+
+.toolbar-ios ion-title {
+    padding: 20px 12px 0 !important;
 }
 
 .ion-ios-onConnection,

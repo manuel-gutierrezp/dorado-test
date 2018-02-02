@@ -9,6 +9,7 @@ import { Fence } from './declarations/geofences.model';
 import { Place } from './declarations/places.model';
 
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/retry';
 import { Platform } from 'ionic-angular/platform/platform';
 
 @Component({
@@ -17,7 +18,11 @@ import { Platform } from 'ionic-angular/platform/platform';
 })
 export class DynamicContentPage {
 
-  networkStatus: boolean;
+  lat1: any;
+  lng1: any;
+  lat2: any;
+  lng2: any;
+  networkStatus = true;
   status: string;
   type: string;
   name: any;
@@ -165,8 +170,8 @@ export class DynamicContentPage {
   ionViewDidLoad() {
 
     this.platform.ready().then(() => {
-      this.initilizeGeofence();
       this.verifyNetworkStatus();
+      this.initilizeGeofence();
     });
 
   }
@@ -175,21 +180,24 @@ export class DynamicContentPage {
     this.geofence.initialize().then(
       () => {
         console.log('Geofence Plugin Ready');
-        this.geolocation.watchPosition().filter((p) => p.coords !== undefined).subscribe((resp) => {
-          this.lat = resp.coords.latitude;
-          this.lng = resp.coords.longitude;
-          this.alt = resp.coords.altitude;
-          console.dir(resp);
-        }, (err) => {
-          this.lat = 'xxx.x';
-          this.lng = 'xxx.x';
-          this.alt = 'xxx.x';
-        });
       },
       (err) => {
         console.log(err);
       }
     );
+
+    this.geolocation.watchPosition()
+      .filter((p) => p.coords !== undefined)
+      .retry(10)
+      .subscribe((resp) => {
+        this.lat = resp.coords.latitude;
+        this.lng = resp.coords.longitude;
+        this.alt = resp.coords.altitude;
+      }, (err) => {
+        this.lat = 'xxx.x';
+        this.lng = 'xxx.x';
+        this.alt = 'xxx.x';
+      });
 
     this.addGeofence(this.fences);
     this.geofence.onTransitionReceived().subscribe(transition => {
@@ -245,6 +253,22 @@ export class DynamicContentPage {
 
   launchAlert() {
     alert('icon touched');
+  }
+
+  getDistanceFromLatLonInKm(): number {
+    const R = 6371; // Equivolume Radious
+    const distanceLatitude = this.deg2rad(this.lat2 - this.lat1);
+    const distanceLongitude = this.deg2rad(this.lng2 - this.lng1);
+    const a =
+      Math.pow(Math.sin(distanceLatitude / 2), 2) +
+      Math.cos(this.deg2rad(this.lat1)) * Math.cos(this.deg2rad(this.lat2)) *
+      Math.pow(Math.sin(distanceLongitude / 2), 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  deg2rad(deg) {
+    return deg * (Math.PI / 180);
   }
 
 }
