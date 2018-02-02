@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 24">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:rgba(255, 206, 44, 1);stroke-linecap:round;stroke-linejoin:round;}
+        </style>
+    </defs>
+    <title>
+        around-meAsset 23
+    </title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <path d="M17.5,9A8.5,8.5,0,1,0,7.23,17.31L9,23.5l1.77-6.19A8.5,8.5,0,0,0,17.5,9Z" class="cls-1"/>
+            <path d="M10.34,9.19,12,10.88C14.28,8.63,15.35,5.73,14.57,5l-8.9,8.9" class="cls-1"/>
+            <path d="M2.37,7.5,4.05,9.19A2.39,2.39,0,1,0,7.43,5.82L5.74,4.13" class="cls-1"/>
+            <line x1="4.05" x2="12.11" y1="5.82" y2="13.87" class="cls-1"/>
+        </g>
+    </g>
+</svg>

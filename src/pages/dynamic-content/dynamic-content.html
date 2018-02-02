@@ -1,9 +1,10 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Around Me</ion-title>
+    <ion-title>
+      <ion-icon (click)="launchAlert()" class="header-menu-icon" name="menu"></ion-icon>
+      <ion-icon name="doradologo"></ion-icon>
+      <ion-icon name="{{networkStatus? 'onConnection': 'offConnection'}}"></ion-icon>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -14,9 +15,13 @@
       <ion-avatar>
         <img [src]="place.avatar" [alt]="place.name">
       </ion-avatar>
-      <div class="flex description-item">
-        <h2>{{place.name}}</h2>
+      <div class="description-item">
+        <h2 class="title">{{place.name}}</h2>
         <p>{{place.description}}</p>
+        <h3 class="title">{{place.category}}</h3>
+      </div>
+      <div class="arrow-container">
+        <ion-icon name="arrow-right"></ion-icon>
       </div>
     </div>
   </ion-item>
@@ -35,12 +40,10 @@
 
 <ion-footer>
   <ion-toolbar>
-    <div style="display: flex; flex-direction: column">
-      <span>GPS Coords: lat: {{lat}}, long: {{lng}}</span>
-    </div>
-    <div style="display: flex; align-items: center">
-      <span style="margin-right: 5px;">Internet status: {{status}}</span>
-      <div class="status {{networkStatus? 'online': 'offline'}}"></div>
+    <div class="info-footer" >
+      <span>lat: {{lat}}, </span>
+      <span>long: {{lng}}</span>
+      <span>altitude: {{alt}}</span>
     </div>
   </ion-toolbar>
 </ion-footer>

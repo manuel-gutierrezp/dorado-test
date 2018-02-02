@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.25 24">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;}
+        </style>
+    </defs>
+    <title>
+        directoryAsset 17
+    </title>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="Layer_1-2" data-name="Layer 1">
+            <polygon points="14.5 23.5 4.5 23.5 3.5 8.5 15.5 8.5 14.5 23.5" class="cls-1"/>
+            <rect width="15" height="3" x="1.75" y="5.5" class="cls-1"/>
+            <line x1="4" x2="0.5" y1="5.5" y2="0.5" class="cls-1"/>
+            <path d="M3.77,12.5A2.71,2.71,0,0,1,6.5,15a2.42,2.42,0,0,1-2.4,2.5" class="cls-1"/>
+        </g>
+    </g>
+</svg>

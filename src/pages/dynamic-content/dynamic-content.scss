@@ -1,26 +1,117 @@
-page-dynamic-content {
-
-}
+@import '../../theme/variables.scss';
+page-dynamic-content {}
 
 .flex {
-	display: flex;
+    display: flex;
 }
 
 .description-item {
-	flex-direction: column;
-	margin-left: 10px;
+    flex-direction: column;
+    margin-left: 10px;
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    h2.title {
+        font-weight: 700;
+    }
 }
 
-.status {
-	height: 8px;
-	width: 8px;
-	border-radius: 50%;
+.arrow-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
 }
 
-.online {
-	background-color: #21e421;
+.info-footer {
+    display: block;
+    color: white;
+    font-size: 8pt;
 }
 
-.offline {
-	background-color: #ee0b0b;
+.item-md ion-avatar ion-img,
+.item-md ion-avatar img {
+    border-radius: 0%;
+    overflow: hidden;
+    width: 65px;
+    height: 65px;
+}
+
+.ion-ios-arrow-right,
+.ion-ios-arrow-right-outline,
+.ion-md-arrow-right {
+    content: url(../assets/icon/arrow-rightAsset-y.svg);
+    width: 24pt;
+    height: 24pt;
+}
+
+ion-navbar.toolbar,
+.toolbar-background-ios {
+    background-color: #333333;
+}
+
+.header-img {
+    width: 120pt;
+    height: 50%;
+}
+
+.toolbar-title {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.toolbar-background-md,
+.toolbar-background-ios {
+    background-color: #333333;
+}
+
+.toolbar-content,
+.toolbar-ios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .header-menu-icon {
+        color: $ad-yellow;
+        font-size: 22pt;
+    }
+}
+
+.toolbar-ios ion-title {
+    padding: 20px 12px 0 !important;
+}
+
+.ion-ios-onConnection,
+.ion-ios-onConnection-outline,
+.ion-md-onConnection {
+    content: url(../assets/icon/onwifiAsset.svg);
+    width: 24pt;
+    height: 24pt;
+}
+
+.ion-ios-offConnection,
+.ion-ios-offConnection-outline,
+.ion-md-offConnection {
+    content: url(../assets/icon/nowifiAsset.svg);
+    width: 24pt;
+    height: 24pt;
+}
+
+.ion-ios-doradologo,
+.ion-ios-doradologo-outline,
+.ion-md-doradologo {
+    content: url(../assets/icon/eldoradologo.svg);
+    width: 130pt;
+}
+
+.ad-footer {
+    height: 50pt;
+    display: flex;
+    width: 100%;
+    bottom: 70pt;
+    background-color: #333333;
 }
